@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>
+            MyInstagram
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport"  
+            content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <link rel="stylesheet" type="text/css" href="/styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class = "container">
+            <div class="row">
+                <div class="col-md-3 m-auto" id="left" style="position: absolute;">
+                    <h3 class="text-center display-9 my-4">My Instagram</h3>
+                    <div class="row">
+                        <h4> Posts </h4>
+                        <button type="button" onclick="viewPost()"> View posts </button>
+                        <button type="button"> Create a post </button>
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <h4> Stories </h4>
+                        <button type="button"> View stories </button>
+                        <button type="button"> Create a story </button> 
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <h4> Request Verification </h4>
+                        <button type="button" onclick="rfv()"> Place your request </button>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-1 m-auto">
+                </div>
+                <div class="col-md-6 m-auto" id="right">
+                    <h3 class="text-center display-9 my-4" style="position: relative;">View Bar</h3>
+                    <div id="viewPost" style="visibility: hidden;">
+                        <form action="/viewPost" method="POST"
+                            enctype="multipart/form-data">
+                            <label for="PostID">PostID</label>
+                            <input type="text" id="PostID" name="PostID"> 
+                            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                        </form>
+                    </div>
+                    <div id="RFV" style="visibility: hidden;">
+                        <form action="/rfv" method="POST"
+                            enctype="multipart/form-data">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name">
+                            <br>
+                            <label for="knownAs">Known As</label>
+                            <input type="text" id="knownAs" name="knownAs">
+                            <br>
+                            <label for="category">Category</label>
+                            <input type="text" id="category" name="category">
+                            <br>
+                            <label for="file" class="custom-file-label">Image Proof for Verification</label>
+                            <input type="file" name="file" id="proof"
+                            class="custom-file-input>">
+                            <br>
+                            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                        </form>
+                        <% if(message){ %>
+                            <%= message %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        function viewPost(){
+            
+            document.getElementById("RFV").style.visibility = "hidden"
+            document.getElementById("viewPost").style.visibility = "visible";
+        }
+        function rfv(){
+            document.getElementById("viewPost").remove();
+            document.getElementById("RFV").style.visibility = "visible";
+        }
+    </script>
+
+
+
+</html>
